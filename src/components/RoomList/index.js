@@ -43,14 +43,12 @@ class RoomList extends Component {
 			<div>
 				<ul>
 					{ this.state.rooms.map((room) =>
-						<li key={ room.key }>{ room.name }</li>
+						<li key={ room.key }><a onClick={ () => this.props.setActiveRoom(room) }>{ room.name }</a></li>
 					)}
 				</ul>
-
-				<button onClick={ this.toggleModal }>
+				<button className="button is-dark" onClick={ this.toggleModal }>
 					New Room
 				</button>
-
 				<Modal show={ this.state.isOpen } onClose={ this.toggleModal }>
 					<form className="field">
 						<label className="label">Your new room needs a name..</label>
