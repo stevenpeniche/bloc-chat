@@ -15,11 +15,18 @@ firebase.initializeApp(config);
 
 
 class App extends Component {
-  render() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isOpen: false
+		};
+	}
+
+	render() {
     return (
       <div className="App">
-				<h1>Bloc Chat</h1>
-				<RoomList firebase={ firebase }/>
+				<h1 className="title">Bloc Chat</h1>
+				<RoomList className="" firebase={ firebase }/>
       </div>
     );
   }

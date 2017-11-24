@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Modal from '../Modal/index.js'
 
 class RoomList extends Component {
 	constructor(props) {
 		super(props);
 		this.roomsRef = this.props.firebase.database().ref('rooms');
 		this.state = {
-			rooms: []
+			rooms: [],
+			newRoomName: ''
 		};
 	}
 
@@ -17,14 +19,54 @@ class RoomList extends Component {
 		});
 	}
 
+	toggleModal = () => {
+		this.setState({
+			isOpen: !this.state.isOpen
+		});
+	}
+
+	handleChange(e) {
+		this.setState({ newRoomName: e.target.value })
+	}
+
+	createRoom = (e) => {
+		e.preventDefault();
+		this.roomsRef.push({
+		  name: this.state.newRoomName
+		});
+		this.setState({ newRoomName: '' })
+		this.toggleModal()
+	}
 
 	render() {
 		return (
-			<ul>
-				{ this.state.rooms.map((room) =>
-					<li key={ room.key }>{ room.name }</li>
-				)}
-			</ul>
+			<div>
+				<ul>
+					{ this.state.rooms.map((room) =>
+						<li key={ room.key }>{ room.name }</li>
+					)}
+				</ul>
+
+				<button onClick={ this.toggleModal }>
+					New Room
+				</button>
+
+				<Modal show={ this.state.isOpen } onClose={ this.toggleModal }>
+					<form className="field">
+						<label className="label">Your new room needs a name..</label>
+						  <div className="control">
+						    <input className="input"
+									type="text"
+									placeholder="What will it be?"
+									onChange={ (e) => this.handleChange(e) }
+								/>
+						  </div>
+							<div className="control">
+								<button className="button is-primary" onClick={ (e) => this.createRoom(e) }>Create</button>
+							</div>
+					</form>
+				</Modal>
+			</div>
 		)
 	}
 }
