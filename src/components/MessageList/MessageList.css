@@ -1,0 +1,8 @@
+.message-list {
+	overflow-y: auto;
+	height: 40rem;
+}
+
+.new-message-input {
+	width: 76rem;
+}

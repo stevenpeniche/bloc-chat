@@ -31,7 +31,7 @@ class App extends Component {
 	render() {
 		let chatRoom = null;
 		if (this.state.activeRoom) {
-			chatRoom =  <div>
+			chatRoom =  <div className="section">
 										<h1 className="title">{ this.state.activeRoom.name }</h1>
 										<MessageList
 											firebase={ firebase }
@@ -45,11 +45,13 @@ class App extends Component {
     return (
       <div className="App columns">
 				<div className="column has-text-centered">
-					<h1 className="title">Bloc Chat</h1>
-					<RoomList firebase={ firebase } setActiveRoom={ this.setActiveRoom }/>
+					<div className="section">
+						<h1 className="title is-size-1">Bloc Chat</h1>
+						<RoomList firebase={ firebase } setActiveRoom={ this.setActiveRoom }/>
+					</div>
 				</div>
 				<div className='column is-four-fifths has-text-centered'>
-					<div>{ chatRoom }</div>
+					{ chatRoom }
 				</div>
       </div>
     );

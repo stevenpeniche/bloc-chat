@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MessageList.css';
 
 class MessageList extends Component {
 	constructor(props) {
@@ -62,12 +63,22 @@ class MessageList extends Component {
 
 	render() {
 		return (
-			<div>
-				<ul className="box">
-					{ this.state.messages.map((message) =>
-						this.matchMessagesToRoom(message)
-					)}
-				</ul>
+			<div className="container is-fluid">
+				<div className="message-list box">
+					<ul>
+						{ this.state.messages.map((message) =>
+							this.matchMessagesToRoom(message)
+						)}
+					</ul>
+				</div>
+				<div className="field has-addons">
+					<div className="new-message-input control">
+						<input className="input" type="text" placeholder="Enter message.."/>
+					</div>
+					<div className="control">
+						<button className="button is-info">Send</button>
+					</div>
+				</div>
 			</div>
 		)
 	}

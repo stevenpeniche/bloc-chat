@@ -32,9 +32,6 @@ class Modal extends Component {
       <div style={ backdropStyle }>
         <div style={ modalStyle }>
           { this.props.children }
-					<button className="button" onClick={ this.props.onClose }>
-						Close
-					</button>
         </div>
       </div>
     );
