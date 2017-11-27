@@ -7,9 +7,8 @@ class Modal extends Component {
       return null;
     }
 
-    // The gray background
     const backdropStyle = {
-      position: 'fixed',
+      position: 'absolute',
       top: 0,
       bottom: 0,
       left: 0,
@@ -18,14 +17,13 @@ class Modal extends Component {
       padding: 50
     };
 
-    // The modal "window"
     const modalStyle = {
       backgroundColor: '#fff',
       borderRadius: 5,
       maxWidth: 500,
       minHeight: 300,
       margin: '0 auto',
-      padding: 30
+      padding: 30,
     };
 
     return (
