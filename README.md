@@ -1,2 +1,2 @@
-#Bloc Chat
-Room based messaging built with React
+# Bloc Chat
+Chat room messaging web app built with React
