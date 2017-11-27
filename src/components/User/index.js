@@ -14,7 +14,7 @@ class User extends Component {
 
 	signOut = () => {
 		this.props.firebase.auth().signOut();
-		console.log(this.props.user,'has been signed out');
+		window.location.reload()
 	}
 
 	changeSignButton() {
@@ -25,7 +25,6 @@ class User extends Component {
 						 	</div>
 		}
 			return	<div>
-								<h2 className="subtitle">Guest</h2>
 								<button className="button is-info" onClick={ this.signIn }>Sign-in</button>
 							</div>
 	}

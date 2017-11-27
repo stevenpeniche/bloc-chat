@@ -6,13 +6,13 @@ class MessageList extends Component {
 		super(props);
 		this.messagesRef = this.props.firebase.database().ref('messages');
 		this.state = {
-			messages: []
-			// newMessage: {
-			// 	username: ,
-			// 	content: ,
-			// 	sentAt: firebase.database.ServerValue.TIMESTAMP,
-			// 	roomId:
-			// }
+			messages: [],
+			newMessage: {
+				username: this.props.user.displayName,
+				content: '',
+				sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+				roomId: this.props.activeRoom.key
+			}
 		};
 	}
 
@@ -21,27 +21,32 @@ class MessageList extends Component {
 			const message = snapshot.val();
 			message.key = snapshot.key;
 			this.setState({ messages: this.state.messages.concat( message ) })
+
 		});
 	}
 
-	// toggleModal = () => {
-	// 	this.setState({
-	// 		isOpen: !this.state.isOpen
-	// 	});
-	// }
-  //
-	// handleChange(e) {
-	// 	this.setState({ newRoomName: e.target.value })
-	// }
-  //
-	// createRoom = (e) => {
-	// 	e.preventDefault();
-	// 	this.messagesRef.push({
-	// 	  name: this.state.newRoomName
-	// 	});
-	// 	this.setState({ newRoomName: '' })
-	// 	this.toggleModal()
-	// }
+	handleChange(e) {
+		let newMessage = {...this.state.newMessage}
+		newMessage.content = e.target.value
+		newMessage.roomId = this.props.activeRoom.key
+		this.setState({ newMessage })
+	}
+
+	sendMessage = (e) => {
+		e.preventDefault();
+		this.messagesRef.push(this.state.newMessage);
+		this.refs.messageField.value = '';
+	}
+
+	filterSentAtTime = (time) => {
+		let sentAt = new Date(time);
+		let hour = sentAt.getHours();
+		let minutes = sentAt.getMinutes()
+		if (minutes < 10) {
+			return hour < 12 ? hour + ':' + minutes + ' AM' : hour + ':0' + minutes + ' PM'
+		}
+		return hour < 12 ? hour + ':' + minutes + ' AM' : hour + ':' + minutes + ' PM'
+	}
 
 	matchMessagesToRoom = (message) => {
 		if (message.roomId === this.props.activeRoom.key) {
@@ -50,7 +55,7 @@ class MessageList extends Component {
 									<div className="media-content">
 										<div className="content">
 											<p>
-												<strong>{ message.username }</strong> <small>{ message.sentAt }</small>
+												<strong>{ message.username }</strong> <small>{ this.filterSentAtTime(message.sentAt) }</small>
 												<br/>
 												{ message.content }
 											</p>
@@ -71,12 +76,17 @@ class MessageList extends Component {
 						)}
 					</ul>
 				</div>
-				<div className="field has-addons">
+				<div className="form field has-addons">
 					<div className="new-message-input control">
-						<input className="input" type="text" placeholder="Enter message.."/>
+						<input className="input"
+							type="text"
+							ref='messageField'
+							placeholder="Enter message.."
+							onChange={ (e) => this.handleChange(e) }
+						/>
 					</div>
 					<div className="control">
-						<button className="button is-info">Send</button>
+						<button className="button is-info" onClick={ (e) => this.sendMessage(e) }>Send</button>
 					</div>
 				</div>
 			</div>
