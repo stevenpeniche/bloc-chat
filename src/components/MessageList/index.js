@@ -48,31 +48,29 @@ class MessageList extends Component {
 		return hour < 12 ? `${hour}:${minutes} AM`: `${hour - 12}:${minutes} PM`
 	}
 
-	matchMessagesToRoom = (message) => {
-		if (message.roomId === this.props.activeRoom.key) {
-			return	<li className="box" key={ message.key }>
-								<article className="media">
-									<div className="media-content">
-										<div className="content">
-											<p>
-												<strong>{ message.username }</strong> <small>{ this.filterSentAtTime(message.sentAt) }</small>
-												<br/>
-												{ message.content }
-											</p>
-										</div>
-									</div>
-								</article>
-							</li>
-		}
-	}
-
 	render() {
 		return (
 			<div className="container is-fluid">
 				<div className="message-list box">
 					<ul>
-						{ this.state.messages.map((message) =>
-							this.matchMessagesToRoom(message)
+						{ this.state.messages.map((message) => {
+								return message.roomId === this.props.activeRoom.key ?
+											<li className="box" key={ message.key }>
+												<article className="media">
+													<div className="media-content">
+														<div className="content">
+															<p>
+																<strong>{ message.username }</strong> <small>{ this.filterSentAtTime(message.sentAt) }</small>
+																<br/>
+																{ message.content }
+															</p>
+														</div>
+													</div>
+												</article>
+											</li>
+											:
+											null
+							}
 						)}
 					</ul>
 				</div>

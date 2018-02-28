@@ -42,21 +42,6 @@ class App extends Component {
 		}
 	}
 
-	renderChatRoom = () => {
-		if (this.state.activeRoom) {
-			return  <div className='column is-four-fifths has-text-centered'>
-								<div className="section">
-									<h1 className="title">{ this.state.activeRoom.name }</h1>
-									<MessageList
-										firebase={ firebase }
-										activeRoom={ this.state.activeRoom }
-										user={ this.state.currentUser }
-									/>
-								</div>
-							</div>
-		}
-	}
-
 	render() {
     return (
       <div className="App columns">
