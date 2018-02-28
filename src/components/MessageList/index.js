@@ -43,9 +43,9 @@ class MessageList extends Component {
 		let hour = sentAt.getHours();
 		let minutes = sentAt.getMinutes()
 		if (minutes < 10) {
-			return hour < 12 ? hour + ':' + minutes + ' AM' : hour + ':0' + minutes + ' PM'
+			return hour < 12 ? `${hour}:${minutes} AM`: `${hour - 12}:0${minutes} PM`
 		}
-		return hour < 12 ? hour + ':' + minutes + ' AM' : hour + ':' + minutes + ' PM'
+		return hour < 12 ? `${hour}:${minutes} AM`: `${hour - 12}:${minutes} PM`
 	}
 
 	matchMessagesToRoom = (message) => {
@@ -76,7 +76,7 @@ class MessageList extends Component {
 						)}
 					</ul>
 				</div>
-				<div className="form field has-addons">
+				<form className="form field has-addons">
 					<div className="new-message-input control">
 						<input className="input"
 							type="text"
@@ -88,7 +88,7 @@ class MessageList extends Component {
 					<div className="control">
 						<button className="button is-info" onClick={ (e) => this.sendMessage(e) }>Send</button>
 					</div>
-				</div>
+				</form>
 			</div>
 		)
 	}
