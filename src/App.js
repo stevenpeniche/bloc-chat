@@ -67,7 +67,21 @@ class App extends Component {
 						{ this.checkIfSignedIn() }
 					</div>
 				</div>
-					{ this.renderChatRoom() }
+				{
+					this.state.activeRoom ?
+					<div className='column is-four-fifths has-text-centered'>
+						<div className="section">
+							<h1 className="title">{ this.state.activeRoom.name }</h1>
+							<MessageList
+								firebase={ firebase }
+								activeRoom={ this.state.activeRoom }
+								user={ this.state.currentUser }
+							/>
+						</div>
+					</div>
+					:
+					<div></div>
+				}
       </div>
     );
   }
