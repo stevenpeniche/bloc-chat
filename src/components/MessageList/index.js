@@ -57,7 +57,7 @@ class MessageList extends Component {
 								const currentUserMessage = message.username === this.props.user.displayName ? true : false;
 
 								return message.roomId === this.props.activeRoom.key ?
-											<li className="message box" key={ message.key } style={currentUserMessage ? {alignSelf: "flex-end"} : {}}>
+											<li className={`message ${currentUserMessage ? "is-link": ""} box`} key={ message.key } style={currentUserMessage ? {alignSelf: "flex-end"} : {}}>
 												<article className="media">
 													<div className="media-content">
 														<div className="content">
