@@ -44,10 +44,10 @@ class App extends Component {
 
 	render() {
     return (
-      <div className="App columns">
+      <div className="app columns">
 				<div className="column has-text-centered">
-					<div className="section">
-						<h1 className="title is-size-1">Bloc Chat</h1>
+					<div className="side-bar section">
+						<h1 className="logo title">Bloc Chat</h1>
 						<User firebase={ firebase } setUser={ this.setUser } user={ this.state.currentUser }/>
 						{ this.checkIfSignedIn() }
 					</div>
@@ -55,7 +55,7 @@ class App extends Component {
 				{
 					this.state.activeRoom ?
 					<div className='column is-four-fifths has-text-centered'>
-						<div className="section">
+						<div className="room section">
 							<h1 className="title">{ this.state.activeRoom.name }</h1>
 							<MessageList
 								firebase={ firebase }

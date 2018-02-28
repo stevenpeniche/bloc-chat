@@ -50,12 +50,14 @@ class MessageList extends Component {
 
 	render() {
 		return (
-			<div className="container is-fluid">
-				<div className="message-list box">
-					<ul>
+			<div className="message-list-window-container">
+				<div className="message-list-window box">
+					<ul className="message-list">
 						{ this.state.messages.map((message) => {
+								const currentUserMessage = message.username === this.props.user.displayName ? true : false;
+
 								return message.roomId === this.props.activeRoom.key ?
-											<li className="box" key={ message.key }>
+											<li className="message box" key={ message.key } style={currentUserMessage ? {alignSelf: "flex-end"} : {}}>
 												<article className="media">
 													<div className="media-content">
 														<div className="content">
