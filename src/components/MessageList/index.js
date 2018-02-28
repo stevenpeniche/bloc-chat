@@ -43,9 +43,9 @@ class MessageList extends Component {
 		let hour = sentAt.getHours();
 		let minutes = sentAt.getMinutes()
 		if (minutes < 10) {
-			return hour < 12 ? `${hour}:${minutes} AM`: `${hour - 12}:0${minutes} PM`
+			return hour <= 12 ? `${hour}:${minutes} AM`: `${hour - 12}:0${minutes} PM`
 		}
-		return hour < 12 ? `${hour}:${minutes} AM`: `${hour - 12}:${minutes} PM`
+		return hour <= 12 ? `${hour}:${minutes} AM`: `${hour - 12}:${minutes} PM`
 	}
 
 	render() {
