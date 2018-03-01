@@ -20,6 +20,17 @@
 	margin-bottom: 10px;
 }
 
+.user-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	word-break: break-all;
+}
+
+.user-header small {
+	padding-left: 5px;
+}
+
 .new-message-input {
 	width: 76rem;
 }
@@ -31,7 +42,7 @@
 	}
 
 	.message {
-		font-size: .9rem;
+		font-size: .8rem;
 	}
 }
 
@@ -49,7 +60,7 @@
 	}
 
 	.message {
-		font-size: .9rem;
+		font-size: .8rem;
 	}
 
 	.message-list-window {

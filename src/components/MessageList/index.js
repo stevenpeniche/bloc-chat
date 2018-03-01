@@ -39,13 +39,15 @@ class MessageList extends Component {
 	}
 
 	filterSentAtTime = (time) => {
-		let sentAt = new Date(time);
+		const sentAt = new Date(time);
 		let hour = sentAt.getHours();
 		let minutes = sentAt.getMinutes()
-		if (minutes < 10) {
-			return hour <= 12 ? `${hour}:${minutes} AM`: `${hour - 12}:0${minutes} PM`
-		}
-		return hour <= 12 ? `${hour}:${minutes} AM`: `${hour - 12}:${minutes} PM`
+		const AMorPM = hour < 12 || 0 ? " AM" : " PM";
+
+		hour = hour === 0 ? 12 : hour;
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+
+		return hour <= 12 ? `${hour}:${minutes} ${AMorPM}`: `${hour - 12}:${minutes} ${AMorPM}`
 	}
 
 	render() {
@@ -61,11 +63,11 @@ class MessageList extends Component {
 												<article className="media">
 													<div className="media-content">
 														<div className="content">
-															<p>
-																<strong>{ message.username }</strong> <small>{ this.filterSentAtTime(message.sentAt) }</small>
+															<div className="user-header">
+																<strong>{ message.username }</strong><small>{ this.filterSentAtTime(message.sentAt) }</small>
 																<br/>
-																{ message.content }
-															</p>
+															</div>
+															{ message.content }
 														</div>
 													</div>
 												</article>

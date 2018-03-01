@@ -47,7 +47,7 @@ class App extends Component {
       <div className="app columns">
 				<div className="column has-text-centered">
 					<div className="side-bar section">
-						<h1 className="logo title">Bloc Chat</h1>
+						<h1 className="logo title">Yap</h1>
 						<User firebase={ firebase } setUser={ this.setUser } user={ this.state.currentUser }/>
 						{ this.checkIfSignedIn() }
 					</div>

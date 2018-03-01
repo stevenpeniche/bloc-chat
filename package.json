@@ -1,6 +1,6 @@
 {
-  "name": "bloc-chat",
-  "version": "0.1.0",
+  "name": "yap",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "bulma": "^0.6.1",
