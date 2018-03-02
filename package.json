@@ -1,6 +1,7 @@
 {
   "name": "yap",
   "version": "1.0.0",
+  "license" : "Apache-2.0",
   "private": true,
   "dependencies": {
     "bulma": "^0.6.1",
